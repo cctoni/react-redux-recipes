@@ -7,6 +7,7 @@ import {
 } from 'material-ui/styles/colors';
 
 import HeaderBar from './HeaderBar';
+import RecipesList from './RecipesList';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -28,8 +29,9 @@ export const App = (props: Props) => {
 
           <HeaderBar />
 
-          <div>
+          <div className="container" style={{paddingTop: '20px'}}>
 
+            <RecipesList />
 
           </div>
 
