@@ -6,6 +6,9 @@ import {
   deepOrange400
 } from 'material-ui/styles/colors';
 
+import Drawer from 'material-ui/Drawer';
+import {Menu,MenuItem} from 'material-ui/Menu';
+
 import HeaderBar from './HeaderBar';
 import RecipesList from './RecipesList';
 
@@ -17,6 +20,8 @@ const muiTheme = getMuiTheme({
   fontFamily: "Lato, sans-serif"
 });
 
+let forceNavDown = {'top': '64px'};
+
 interface Props {
 
 }
@@ -25,15 +30,24 @@ export const App = (props: Props) => {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
 
-        <div>
+        <div style={{height: '100%'}}>
 
           <HeaderBar />
 
-          <div className="container" style={{paddingTop: '20px'}}>
 
-            <RecipesList />
 
-          </div>
+          <Drawer containerStyle={forceNavDown}>
+            <Menu>
+              <MenuItem>Option 1</MenuItem>
+              <MenuItem>Option 2</MenuItem>
+              <MenuItem>Option 3</MenuItem>
+            </Menu>
+          </Drawer>
+
+
+          <RecipesList />
+
+
 
         </div>
 

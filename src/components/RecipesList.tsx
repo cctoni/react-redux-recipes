@@ -17,11 +17,30 @@ import apiLogin from '../apiLogin';
 
 import '../assets/calories.png';
 
-const styles = { root: { 'display' : 'flex', 'flexWrap': 'wrap',
-'justifyContent': 'space-around' }, tile: { 'width': '300px', 'overflowY':
-'auto', 'marginBottom': '20px', 'cursor': 'pointer' }, materialIcons: { display:
-'inline-flex', alignItems: 'center', justifyContent: 'center', verticalAlign:
-'middle', marginLeft: '10px' } };
+const styles = {
+  root: {
+    'display': 'flex',
+    'flexWrap': 'wrap',
+    'justifyContent': 'space-around',
+    height: "100%",
+    overflowY: "auto",
+    padding: "48px",
+    paddingLeft: '304px'
+  },
+  tile: {
+    'width': '300px',
+    'overflowY': 'auto',
+    'marginBottom': '20px',
+    'cursor': 'pointer'
+  },
+  materialIcons: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    verticalAlign: 'middle',
+    marginLeft: '10px'
+  }
+};
 
 class RecipesList extends React.Component < {}, {} > {
 
@@ -32,7 +51,7 @@ class RecipesList extends React.Component < {}, {} > {
 componentDidMount(){
 
   axios
-    .get(`https://api.edamam.com/search?q=chicken&app_id=${apiLogin.appId}&app_key=${apiLogin.appKey}&from=0&to=10`)
+    .get(`https://api.edamam.com/search?q=chicken&app_id=${apiLogin.appId}&app_key=${apiLogin.appKey}&from=0&to=12`)
     .then(response => {
       console.log(response.data);
       this.setState({

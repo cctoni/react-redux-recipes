@@ -12,11 +12,13 @@ const styles = {
   },
   searchBox: {
     backgroundColor: 'white',
-    marginLeft: '50px',
+    marginLeft: '90px',
     boxShadow: "0 5px 5px 0 rgba(0,0,0,0.1)",
     borderRadius: "3px",
-    display:'inline'
+    display:'inline',
   },
+  menuItem: {
+  }
 
 }
 
@@ -27,14 +29,15 @@ const HeaderBar = (props) => {
       title={
         <div>
           <strong style={styles.title}>React Recipes</strong>
-          {/*}<Menu disableAutoFocus={true} style={styles.searchBox} >
-             <MenuItem rightIcon={<ActionSearch color={props.muiTheme.palette.primary1Color}/>} disabled={true} >
-               <TextField hintText="Search" fullWidth={true} underlineStyle={{display: 'none'}} />
-             </MenuItem>
-         </Menu>*/}
+          <div  style={styles.searchBox} >
+            <TextField  underlineStyle={{display: 'none'}}/>
+            <ActionSearch color={props.muiTheme.palette.primary1Color}/>
+
+         </div>
         </div>
       }
       onTitleTouchTap={()=>{}}
+      iconElementLeft={<i style={{marginLeft:'48px'}}/>}
        >
     </AppBar>
 
