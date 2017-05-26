@@ -7,24 +7,21 @@ import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
 
-import StarRating from './StarRating';
+import {Menu,MenuItem} from 'material-ui/Menu';
+
+import FontIcon from 'material-ui/FontIcon';
+import ActionHome from 'material-ui/svg-icons/action/home';
+
 
 import apiLogin from '../apiLogin';
 
-const styles = {
-  root: {
-    'display' : 'flex',
-    'flexWrap': 'wrap',
-    'justifyContent': 'space-around'
-  },
-  tile: {
-    'width': '300px',
-    //'height': 450,
-    'overflowY': 'auto',
-    'marginBottom': '20px',
-    'cursor': 'pointer'
-  }
-};
+import '../assets/calories.png';
+
+const styles = { root: { 'display' : 'flex', 'flexWrap': 'wrap',
+'justifyContent': 'space-around' }, tile: { 'width': '300px', 'overflowY':
+'auto', 'marginBottom': '20px', 'cursor': 'pointer' }, materialIcons: { display:
+'inline-flex', alignItems: 'center', justifyContent: 'center', verticalAlign:
+'middle', marginLeft: '10px' } };
 
 class RecipesList extends React.Component < {}, {} > {
 
@@ -54,8 +51,9 @@ render() {
             <CardMedia overlay={<CardTitle title={tile.recipe.label} subtitle={tile.recipe.source} />}>
               <img src={tile.recipe.image} />
             </CardMedia>
-            <CardText>
-              <StarRating numOfStars={4} />
+            <CardText style={{float: 'right'}}>
+                <img src='images/calories.png' style={{width: '40px', height:'40px'}}/>{(tile.recipe.calories/tile.recipe.yield).toFixed()}
+                <FontIcon style={styles.materialIcons as any} width="40" className="material-icons" color='gray' >person</FontIcon> {tile.recipe.yield}
             </CardText>
           </Card>
         ))}
