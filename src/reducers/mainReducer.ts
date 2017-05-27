@@ -35,7 +35,6 @@ const handleChangeSearchKey = (state: mainState, action)=> {
 }
 
 const handleSearchStarted = (state: mainState)=> {
-  debugger;
   return {
     ...state,
     isSearching: true
@@ -43,7 +42,6 @@ const handleSearchStarted = (state: mainState)=> {
 }
 
 const handleSearchCompleted = (state: mainState, action)=> {
-  debugger;
   return {
     ...state,
     isSearching: false,
