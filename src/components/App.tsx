@@ -17,14 +17,20 @@ const muiTheme = getMuiTheme({
     primary1Color: orange400,
     accent1Color: deepOrange400
   },
-  fontFamily: "Lato, sans-serif"
+  //fontFamily: "Lato, sans-serif"
+  fontFamily: 'monospace'
 });
 
 let forceNavDown = {'top': '64px'};
 
 interface Props {
   searchKey: string;
+  isSearching: boolean;
+  searchResults: any[];
   changeSearchKey: (string)=>void;
+  searchStarted:()=>void;
+  searchCompleted:(any)=>void;
+  fetchRecipes:()=>void;
 }
 
 export const App = (props: Props) => {
@@ -33,7 +39,10 @@ export const App = (props: Props) => {
 
         <div style={{height: '100%'}}>
 
-          <HeaderBar searchKey={props.searchKey} changeSearchKey={props.changeSearchKey} />
+          <HeaderBar
+            searchKey={props.searchKey}
+            changeSearchKey={props.changeSearchKey}
+            fetchRecipes={props.fetchRecipes} />
 
 
 
@@ -46,7 +55,7 @@ export const App = (props: Props) => {
           </Drawer>
 
 
-          <RecipesList />
+          <RecipesList recipes={props.searchResults} />
 
 
 

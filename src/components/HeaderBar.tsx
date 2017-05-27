@@ -11,6 +11,7 @@ import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui
 import Avatar from 'material-ui/Avatar';
 import IconMenu from 'material-ui/IconMenu';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
+import Badge from 'material-ui/Badge';
 
 import {
   orange400,
@@ -20,6 +21,7 @@ import {
 const styles = {
   title: {
     cursor: 'pointer',
+    fontWeight: 'bolder'
   },
   searchBox: {
     backgroundColor: 'white',
@@ -48,6 +50,7 @@ const styles = {
 interface Props {
   searchKey: string;
   changeSearchKey: (string)=>void;
+  fetchRecipes: ()=>void;
 }
 
 
@@ -63,9 +66,9 @@ const HeaderBar = (props: Props) => {
         <Toolbar style={{background: 'transparent', height:'64px'}}>
           <ToolbarGroup firstChild={true}>
             <div style={{display: 'flex', alignItems:'center'}}>
-              <strong style={styles.title}>React Recipes</strong>
+              <strong style={styles.title as any}>React Recipes</strong>
               <div  style={{...styles.searchBox, display: 'flex', alignItems:'center'}} >
-                <IconButton style={ {...styles.materialIcon,...styles.searchIconButton} as any}><FontIcon className="material-icons" color={orange400} style={{lineHeight:'auto'}} >search</FontIcon></IconButton>
+                <IconButton onTouchTap={()=>props.fetchRecipes()} style={ {...styles.materialIcon,...styles.searchIconButton} as any}><FontIcon className="material-icons" color={orange400} style={{lineHeight:'auto'}} >search</FontIcon></IconButton>
                 <TextField id="searchKey" defaultValue={props.searchKey} onChange={e=>onChangeSearchKey(e)} hintText="Search" fullWidth={true} underlineStyle={{display: 'none'}} style={{height: 'auto', margin:'8px', width:'600px'}} hintStyle={{bottom:'auto', fontWeight:'bold'}} />
 
              </div>

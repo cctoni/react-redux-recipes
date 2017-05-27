@@ -15,6 +15,8 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 
 import apiLogin from '../apiLogin';
 
+import Recipe from '../models/Recipe';
+
 import '../assets/calories.png';
 
 const styles = {
@@ -42,37 +44,23 @@ const styles = {
   }
 };
 
-class RecipesList extends React.Component < {}, {} > {
+interface Props {
+  recipes: Array<Recipe>
+}
 
-  state = {
-    tilesData: []
-  };
+const RecipesList = (props: Props)=> {
 
-componentDidMount(){
-
-  axios
-    .get(`https://api.edamam.com/search?q=chicken&app_id=${apiLogin.appId}&app_key=${apiLogin.appKey}&from=0&to=12`)
-    .then(response => {
-      console.log(response.data);
-      this.setState({
-        tilesData: response.data.hits
-      });
-    })
-
-};
-
-render() {
     return (
       <div style={styles.root as any}>
 
-        {this.state.tilesData.map(tile => (
-          <Card key={tile.recipe.image} style={styles.tile as any}>
-            <CardMedia overlay={<CardTitle title={tile.recipe.label} subtitle={tile.recipe.source} />}>
-              <img src={tile.recipe.image} />
+        {props.recipes.map(tile => (
+          <Card key={tile.image} style={styles.tile as any}>
+            <CardMedia overlay={<CardTitle title={tile.label} subtitle={tile.source} />}>
+              <img src={tile.image} />
             </CardMedia>
             <CardText style={{float: 'right'}}>
-                <img src='images/calories.png' style={{width: '40px', height:'40px'}}/>{(tile.recipe.calories/tile.recipe.yield).toFixed()}
-                <FontIcon style={styles.materialIcons as any} width="40" className="material-icons" color='gray' >person</FontIcon> {tile.recipe.yield}
+                <img src='images/calories.png' style={{width: '40px', height:'40px'}}/>{(tile.calories/tile.yield).toFixed()}
+                <FontIcon style={styles.materialIcons as any} width="40" className="material-icons" color='gray' >person</FontIcon> {tile.yield}
             </CardText>
           </Card>
         ))}
@@ -80,7 +68,6 @@ render() {
       </div>
     );
 
-  }
-}
+};
 
 export default RecipesList;
