@@ -23,7 +23,8 @@ const muiTheme = getMuiTheme({
 let forceNavDown = {'top': '64px'};
 
 interface Props {
-
+  searchKey: string;
+  changeSearchKey: (string)=>void;
 }
 
 export const App = (props: Props) => {
@@ -32,12 +33,12 @@ export const App = (props: Props) => {
 
         <div style={{height: '100%'}}>
 
-          <HeaderBar />
+          <HeaderBar searchKey={props.searchKey} changeSearchKey={props.changeSearchKey} />
 
 
 
           <Drawer containerStyle={forceNavDown}>
-            <Menu>
+            <Menu disableAutoFocus={true}>
               <MenuItem>Option 1</MenuItem>
               <MenuItem>Option 2</MenuItem>
               <MenuItem>Option 3</MenuItem>

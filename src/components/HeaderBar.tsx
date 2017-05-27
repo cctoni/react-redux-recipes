@@ -45,8 +45,18 @@ const styles = {
 
 }
 
+interface Props {
+  searchKey: string;
+  changeSearchKey: (string)=>void;
+}
 
-const HeaderBar = (props) => {
+
+const HeaderBar = (props: Props) => {
+
+  let onChangeSearchKey = (e)=>{
+    props.changeSearchKey(e.target.value);
+  }
+
   return (
     <AppBar
       title={
@@ -56,7 +66,7 @@ const HeaderBar = (props) => {
               <strong style={styles.title}>React Recipes</strong>
               <div  style={{...styles.searchBox, display: 'flex', alignItems:'center'}} >
                 <IconButton style={ {...styles.materialIcon,...styles.searchIconButton} as any}><FontIcon className="material-icons" color={orange400} style={{lineHeight:'auto'}} >search</FontIcon></IconButton>
-                <TextField hintText="Search" fullWidth={true} underlineStyle={{display: 'none'}} style={{height: 'auto', margin:'8px', width:'600px'}} hintStyle={{bottom:'auto', fontWeight:'bold'}} />
+                <TextField id="searchKey" defaultValue={props.searchKey} onChange={e=>onChangeSearchKey(e)} hintText="Search" fullWidth={true} underlineStyle={{display: 'none'}} style={{height: 'auto', margin:'8px', width:'600px'}} hintStyle={{bottom:'auto', fontWeight:'bold'}} />
 
              </div>
 
