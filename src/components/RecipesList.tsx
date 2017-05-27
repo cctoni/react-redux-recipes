@@ -9,6 +9,8 @@ import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'mat
 
 import {Menu,MenuItem} from 'material-ui/Menu';
 
+import CircularProgress from 'material-ui/CircularProgress';
+
 import FontIcon from 'material-ui/FontIcon';
 import ActionHome from 'material-ui/svg-icons/action/home';
 
@@ -45,7 +47,8 @@ const styles = {
 };
 
 interface Props {
-  recipes: Array<Recipe>
+  recipes: Array<Recipe>,
+  isSearching: boolean
 }
 
 const RecipesList = (props: Props)=> {
@@ -53,7 +56,8 @@ const RecipesList = (props: Props)=> {
     return (
       <div style={styles.root as any}>
 
-        {props.recipes.map(tile => (
+        {!props.isSearching &&
+          props.recipes.map(tile => (
           <Card key={tile.image} style={styles.tile as any}>
             <CardMedia overlay={<CardTitle title={tile.label} subtitle={tile.source} />}>
               <img src={tile.image} />
@@ -64,6 +68,10 @@ const RecipesList = (props: Props)=> {
             </CardText>
           </Card>
         ))}
+
+        {props.isSearching &&
+          <CircularProgress style={{height: '100%', display:'flex', alignItems:'center'}} size={300} thickness={25} />
+        }
 
       </div>
     );

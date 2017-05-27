@@ -9,6 +9,7 @@ import {
 import Drawer from 'material-ui/Drawer';
 import {Menu,MenuItem} from 'material-ui/Menu';
 
+
 import HeaderBar from './HeaderBar';
 import RecipesList from './RecipesList';
 
@@ -55,7 +56,8 @@ export const App = (props: Props) => {
           </Drawer>
 
 
-          <RecipesList recipes={props.searchResults} />
+          <RecipesList recipes={props.searchResults} isSearching={props.isSearching} />
+
 
 
 
