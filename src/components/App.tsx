@@ -8,6 +8,8 @@ import {
 
 import Drawer from 'material-ui/Drawer';
 import {Menu,MenuItem} from 'material-ui/Menu';
+import Divider from 'material-ui/Divider';
+import FontIcon from 'material-ui/FontIcon';
 
 
 import HeaderBar from './HeaderBar';
@@ -49,10 +51,18 @@ export const App = (props: Props) => {
 
           <Drawer containerStyle={forceNavDown}>
             <Menu disableAutoFocus={true}>
-              <MenuItem>Option 1</MenuItem>
-              <MenuItem>Option 2</MenuItem>
-              <MenuItem>Option 3</MenuItem>
+              <MenuItem disabled>Need some inspiration?</MenuItem>
+              <MenuItem>Beef</MenuItem>
+              <MenuItem>Chicken</MenuItem>
+              <MenuItem>Pasta</MenuItem>
+              <MenuItem>Salmon</MenuItem>
+              <MenuItem>Vegetarian</MenuItem>
+              <Divider />
+              <MenuItem leftIcon={<FontIcon className="zmdi zmdi-github zmdi-fw"></FontIcon>}>Source Code</MenuItem>
+              <MenuItem leftIcon={<FontIcon className="zmdi zmdi-comment-text zmdi-fw"></FontIcon>}>Feedback</MenuItem>
+
             </Menu>
+            <p className="text-center" style={{position:'absolute', bottom:'50px', left:'0px', right:'0px'}}>Powered by <span><a href="https://www.edamam.com"><img height="20px" src="https://www.edamam.com/images/logo-site-header.png" /></a></span></p>
           </Drawer>
 
 
