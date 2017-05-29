@@ -36,16 +36,23 @@ interface Props {
   fetchRecipes:()=>void;
 }
 
-export const App = (props: Props) => {
+export class App extends React.Component<Props,{}> {
+
+  componentDidMount() {
+    this.props.changeSearchKey('fresh+picks');
+    this.props.fetchRecipes();
+  };
+
+  render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
 
         <div style={{height: '100%'}}>
 
           <HeaderBar
-            searchKey={props.searchKey}
-            changeSearchKey={props.changeSearchKey}
-            fetchRecipes={props.fetchRecipes} />
+            searchKey={this.props.searchKey}
+            changeSearchKey={this.props.changeSearchKey}
+            fetchRecipes={this.props.fetchRecipes} />
 
 
 
@@ -66,7 +73,7 @@ export const App = (props: Props) => {
           </Drawer>
 
 
-          <RecipesList recipes={props.searchResults} isSearching={props.isSearching} />
+          <RecipesList recipes={this.props.searchResults} isSearching={this.props.isSearching} />
 
 
 
@@ -75,4 +82,4 @@ export const App = (props: Props) => {
 
       </MuiThemeProvider>
     );
-  };
+  }};
