@@ -19,6 +19,10 @@ import {
 } from 'material-ui/styles/colors';
 
 const styles = {
+  appBar: {
+    position: 'fixed',
+    top: '0px'
+  },
   title: {
     cursor: 'pointer',
     fontWeight: 'bolder'
@@ -62,6 +66,7 @@ const HeaderBar = (props: Props) => {
 
   return (
     <AppBar
+      style={styles.appBar as any}
       title={
         <Toolbar style={{background: 'transparent', height:'64px'}}>
           <ToolbarGroup firstChild={true}>

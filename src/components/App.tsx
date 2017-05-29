@@ -1,4 +1,13 @@
 import * as React from 'react';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from 'react-router-dom';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
@@ -24,7 +33,7 @@ const muiTheme = getMuiTheme({
   fontFamily: 'monospace'
 });
 
-let forceNavDown = {'top': '64px'};
+let forceNavDown = {'marginTop': '64px'};
 
 interface Props {
   searchKey: string;
@@ -54,26 +63,38 @@ export class App extends React.Component<Props,{}> {
             changeSearchKey={this.props.changeSearchKey}
             fetchRecipes={this.props.fetchRecipes} />
 
+            <div style={forceNavDown}>
+              <div className="col-lg-2 visible-lg">
+                <Drawer containerStyle={forceNavDown}>
+                  <Menu disableAutoFocus={true}>
+                    <MenuItem disabled>Need some inspiration?</MenuItem>
+                    <MenuItem>Beef</MenuItem>
+                    <MenuItem>Chicken</MenuItem>
+                    <MenuItem>Pasta</MenuItem>
+                    <MenuItem>Salmon</MenuItem>
+                    <MenuItem>Vegetarian</MenuItem>
+                    <Divider />
+                    <MenuItem leftIcon={<FontIcon className="zmdi zmdi-github zmdi-fw"></FontIcon>}>Source Code</MenuItem>
+                    <MenuItem leftIcon={<FontIcon className="zmdi zmdi-comment-text zmdi-fw"></FontIcon>}>Feedback</MenuItem>
+
+                  </Menu>
+                  <p className="text-center" style={{position:'absolute', bottom:'50px', left:'0px', right:'0px'}}>Powered by <span><a href="https://www.edamam.com"><img height="20px" src="https://www.edamam.com/images/logo-site-header.png" /></a></span></p>
+                </Drawer>
+              </div>
+              <div className="col-md-12 col-lg-10">
+                <Route exact path="/recipes" render={()=>(
+                  <RecipesList recipes={this.props.searchResults} isSearching={this.props.isSearching} />
+                )  as any} />
+                <Route path="/recipes/:id" render={()=>(<h1>Details</h1>)} />
+              </div>
+            </div>
 
 
-          <Drawer containerStyle={forceNavDown}>
-            <Menu disableAutoFocus={true}>
-              <MenuItem disabled>Need some inspiration?</MenuItem>
-              <MenuItem>Beef</MenuItem>
-              <MenuItem>Chicken</MenuItem>
-              <MenuItem>Pasta</MenuItem>
-              <MenuItem>Salmon</MenuItem>
-              <MenuItem>Vegetarian</MenuItem>
-              <Divider />
-              <MenuItem leftIcon={<FontIcon className="zmdi zmdi-github zmdi-fw"></FontIcon>}>Source Code</MenuItem>
-              <MenuItem leftIcon={<FontIcon className="zmdi zmdi-comment-text zmdi-fw"></FontIcon>}>Feedback</MenuItem>
-
-            </Menu>
-            <p className="text-center" style={{position:'absolute', bottom:'50px', left:'0px', right:'0px'}}>Powered by <span><a href="https://www.edamam.com"><img height="20px" src="https://www.edamam.com/images/logo-site-header.png" /></a></span></p>
-          </Drawer>
 
 
-          <RecipesList recipes={this.props.searchResults} isSearching={this.props.isSearching} />
+
+
+
 
 
 

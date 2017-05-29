@@ -29,8 +29,8 @@ const styles = {
     height: "100%",
     overflowY: "auto",
     padding: "48px",
-    paddingLeft: '304px',
-    background: '#F7F8FB'
+    //paddingLeft: '304px',
+    
   },
   tile: {
     'width': '300px',
