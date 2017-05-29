@@ -17,6 +17,7 @@ module.exports = {
   output: {
     path: path.join(basePath, 'dist'),
     filename: 'bundle.js',
+    publicPath: '/', //critical for HtmlWebpackPlugin, check: https://github.com/ReactTraining/react-router/issues/676#issuecomment-174073981
   },
 
   devtool: 'source-map',
@@ -26,7 +27,8 @@ module.exports = {
        inline: true, //Enable watch and live reload
        host: 'localhost',
        port: 8080,
-       stats: 'errors-only'
+       stats: 'errors-only',
+       historyApiFallback: true,
   },
 
   module: {

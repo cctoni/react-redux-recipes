@@ -5,6 +5,15 @@ import { Provider } from 'react-redux';
 import {reducers} from './reducers';
 import {AppContainer} from './components/AppContainer';
 import reduxThunk from 'redux-thunk';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from 'react-router-dom';
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import './app.css';
 
@@ -19,6 +28,12 @@ let store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppContainer />
+    <Router>
+      <Switch>
+        <Redirect exact from="/" to="/recipes"/>
+        <Route exact path="/recipes" component={AppContainer as any} />
+        <Route path="/recipes/:id" component={AppContainer as any} />
+      </Switch>
+    </Router>
   </Provider>,
   document.getElementById('root'));
