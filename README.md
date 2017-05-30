@@ -39,7 +39,7 @@ Check the live version at: https://mohamed-ismat.github.io/react-redux-recipes/
 
 * Clone the repository
 * Run `npm install` to install the dependencies
-* Sign up for a developer key on developer.edamam.com
+* Sign up for a developer key on developer.edamam.com (you should get an appId and an appKey)
 * Create an `apiLogin.ts` file under `src` that exports an `appId` and `appKey` properties.
 * Run `npm start -- --open` to fire up the webpack-dev-server and open the app in a new browser tab.
 
