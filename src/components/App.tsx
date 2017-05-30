@@ -1,11 +1,9 @@
 import * as React from 'react';
 
 import {
-  BrowserRouter as Router,
   Route,
   Switch,
   Link,
-  Redirect
 } from 'react-router-dom';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -14,7 +12,6 @@ import {
   orange400,
   deepOrange400
 } from 'material-ui/styles/colors';
-
 
 import HeaderBar from './HeaderBar';
 import RecipesList from './RecipesList';
