@@ -18914,7 +18914,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 // http://stackoverflow.com/a/34015469/988941
 (0, _reactTapEventPlugin2.default)();
 var store = (0, _redux.createStore)(_reducers.reducers, (0, _redux.applyMiddleware)(_reduxThunk2.default));
-ReactDOM.render(React.createElement(_reactRedux.Provider, { store: store }, React.createElement(_reactRouterDom.BrowserRouter, null, React.createElement(_reactRouterDom.Switch, null, React.createElement(_reactRouterDom.Redirect, { exact: true, from: "/", to: "/recipes" }), React.createElement(_reactRouterDom.Route, { path: "/recipes", component: _AppContainer.AppContainer }), React.createElement(_reactRouterDom.Route, { exact: true, path: "/foo", render: function render() {
+ReactDOM.render(React.createElement(_reactRedux.Provider, { store: store }, React.createElement(_reactRouterDom.HashRouter, null, React.createElement(_reactRouterDom.Switch, null, React.createElement(_reactRouterDom.Redirect, { exact: true, from: "/", to: "/recipes" }), React.createElement(_reactRouterDom.Route, { path: "/recipes", component: _AppContainer.AppContainer }), React.createElement(_reactRouterDom.Route, { exact: true, path: "/foo", render: function render() {
         return React.createElement("h1", null, "Foo");
     } })))), document.getElementById('root'));
 
