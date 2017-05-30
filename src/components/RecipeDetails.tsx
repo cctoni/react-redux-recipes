@@ -1,10 +1,11 @@
 import * as React from 'react';
-import Recipe from '../models/Recipe';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+
 import FontIcon from 'material-ui/FontIcon';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import {Link} from 'react-router-dom';
+
+import Recipe from '../models/Recipe';
 import NutrientDetails from './NutrientDetails';
 
 interface RecipeDetailsParams {
@@ -21,9 +22,6 @@ const styles = {
   tile: {
     height: "100%",
     overflowY: "auto",
-    //'width': '600px',
-    //'overflowY': 'auto',
-    //'marginBottom': '20px',
   },
   materialIcons: {
     display: 'inline-flex',
@@ -31,12 +29,23 @@ const styles = {
     justifyContent: 'center',
     verticalAlign: 'middle',
     marginLeft: '10px'
+  },
+  image: {
+    display:'inline',
+    margin:'20px',
+    float:'left'
+  },
+  detailsDiv: {
+    padding:'15px',
+    marginLeft:'15px',
+    paddingLeft:'30px',
+    display:'inline-block'
   }
 }
 
 class RecipeDetails extends React.Component<Props,{}> {
 
-  componentWillMount(){
+  componentWillMount() {
 
     let {match, changeSelectedRecipe} = this.props;
 
@@ -50,43 +59,43 @@ class RecipeDetails extends React.Component<Props,{}> {
     if (!recipe) return <div />;
 
     return (
+
       <div style={styles.tile as any}>
 
-      <RaisedButton
-        label="Back"
-        containerElement={<Link to="/recipes"></Link>}/> <br /> <br />
+        <RaisedButton
+          label="Back"
+          containerElement={<Link to="/recipes"></Link>}/> <br /> <br />
 
-      <Paper>
+        <Paper>
 
-        <div>
+          <div>
 
-          <img src={recipe.image} className="img img-responsive img-thumbnail" style={{display:'inline', margin:'20px', float:'left'}}/>
+            <img src={recipe.image} className="img img-responsive img-thumbnail" style={styles.image}/>
 
-          <div style={{padding:'15px', marginLeft:'15px',paddingLeft:'30px', display:'inline-block'}}>
+            <div style={styles.detailsDiv}>
 
-              <h3>{recipe.label}</h3>
-              <h4 className="text-muted">{recipe.source}</h4>
+                <h3>{recipe.label}</h3>
+                <h4 className="text-muted">{recipe.source}</h4>
 
-              <p>
-                  <img src='images/calories.png' style={{width: '40px', height:'40px'}}/>{(recipe.calories/recipe.yield).toFixed()}
-                  <FontIcon style={styles.materialIcons as any} width="40" className="material-icons" color='gray' >person</FontIcon> {recipe.yield}
-              </p>
+                <p>
+                  <img src='images/calories.png' width="40" height="40"/>{(recipe.calories/recipe.yield).toFixed()}
+                  <FontIcon style={styles.materialIcons as any} className="material-icons" width="40" color='gray' >person</FontIcon> {recipe.yield}
+                </p>
 
-              <h5>Ingredients</h5>
-              <p>
-                {recipe.ingredientLines.map((l,idx)=><li key={idx}>{l}</li>)}
-              </p>
+                <h5>Ingredients</h5>
+                <p>
+                  {recipe.ingredientLines.map((l,idx)=><li key={idx}>{l}</li>)}
+                </p>
 
-              <h5>Nutrients (per serving)</h5>
-              <NutrientDetails totalNutrients={recipe.totalNutrients} servings={recipe.yield} />
+                <h5>Nutrients (per serving)</h5>
+                <NutrientDetails totalNutrients={recipe.totalNutrients} servings={recipe.yield} />
 
-              <p><a href={recipe.url}>Preperation Instructions</a></p>
+                <p><a href={recipe.url}>Preperation Instructions</a></p>
+            </div>
+
           </div>
-        </div>
-      </Paper>
 
-
-
+        </Paper>
 
       </div>
     )
