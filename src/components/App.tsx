@@ -25,6 +25,7 @@ import HeaderBar from './HeaderBar';
 import RecipesList from './RecipesList';
 import RecipeDetails from './RecipeDetails';
 import Recipe from '../models/Recipe';
+import Sidebar from './Sidebar';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -71,29 +72,14 @@ export class App extends React.Component<Props,{}> {
               searchKey={this.props.searchKey}
               changeSearchKey={this.props.changeSearchKey}
               fetchRecipes={this.props.fetchRecipes}
-              history = {history} />
+              history={history}
+              />
           }/>
 
             <div style={{...forceNavDown, height: '100%'}}>
               <div className="col-lg-2 visible-lg">
-                <Drawer containerStyle={forceNavDown}>
-                  <Menu disableAutoFocus={true}>
-                    <MenuItem disabled>Need some inspiration?</MenuItem>
-                    <MenuItem onTouchTap={()=>this.searchFor('Fresh Picks')}>Fresh Picks</MenuItem>
-                    <MenuItem onTouchTap={()=>this.searchFor('Beef')}>Beef</MenuItem>
-                    <MenuItem onTouchTap={()=>this.searchFor('Burger')}>Burger</MenuItem>
-                    <MenuItem onTouchTap={()=>this.searchFor('Chicken')}>Chicken</MenuItem>
-                    <MenuItem onTouchTap={()=>this.searchFor('Pasta')}>Pasta</MenuItem>
-                    <MenuItem onTouchTap={()=>this.searchFor('Salad')}>Salad</MenuItem>
-                    <MenuItem onTouchTap={()=>this.searchFor('Turkey')}>Turkey</MenuItem>
-                    <MenuItem onTouchTap={()=>this.searchFor('Vegetarian')}>Vegetarian</MenuItem>
-                    <Divider />
-                    <MenuItem disabled leftIcon={<FontIcon className="zmdi zmdi-github zmdi-fw"></FontIcon>}><a href="https://github.com/mohamed-ismat/react-redux-recipes">Source Code</a></MenuItem>
-                    <MenuItem disabled leftIcon={<FontIcon className="zmdi zmdi-comment-text zmdi-fw"></FontIcon>}><a href="https://github.com/mohamed-ismat/react-redux-recipes/issues">Feedback</a></MenuItem>
-
-                  </Menu>
-                  <p className="text-center" style={{position:'absolute', bottom:'70px', left:'0px', right:'0px'}}>Powered by <span><a href="https://www.edamam.com"><img height="20px" src="https://www.edamam.com/images/logo-site-header.png" /></a></span></p>
-                </Drawer>
+                <Sidebar
+                  searchFor={key=>this.searchFor(key)}/>
               </div>
               <div className="col-md-12 col-lg-10" style={{padding: "48px", height:'100%'} as any}>
                 <Switch>

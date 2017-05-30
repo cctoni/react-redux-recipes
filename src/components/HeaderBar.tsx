@@ -12,7 +12,7 @@ import Avatar from 'material-ui/Avatar';
 import IconMenu from 'material-ui/IconMenu';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import Badge from 'material-ui/Badge';
-import {Route,withRouter,Link} from 'react-router-dom';
+import {Route,Link} from 'react-router-dom';
 
 import {
   orange400,
@@ -129,4 +129,4 @@ const HeaderBar = (props: Props) => {
   )
 }
 
-export default withRouter(muiThemeable()(HeaderBar))
+export default muiThemeable()(HeaderBar)
