@@ -31,8 +31,9 @@ ReactDOM.render(
     <Router>
       <Switch>
         <Redirect exact from="/" to="/recipes"/>
-        <Route exact path="/recipes" component={AppContainer as any} />
-        <Route path="/recipes/:id" component={AppContainer as any} />
+        <Route path="/recipes" component={AppContainer as any} />
+        {/*<Route path="/recipes/:id" component={AppContainer as any} />*/}
+        <Route exact path="/foo" render={()=>(<h1>Foo</h1>) as any} />
       </Switch>
     </Router>
   </Provider>,

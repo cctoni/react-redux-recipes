@@ -1,6 +1,8 @@
 import * as React from 'react'
 import axios from 'axios';
 
+import {Link} from 'react-router-dom';
+
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
@@ -28,9 +30,8 @@ const styles = {
     'justifyContent': 'space-around',
     height: "100%",
     overflowY: "auto",
-    padding: "48px",
     //paddingLeft: '304px',
-    
+
   },
   tile: {
     'width': '300px',
@@ -49,29 +50,37 @@ const styles = {
 
 interface Props {
   recipes: Array<Recipe>,
-  isSearching: boolean
+  isSearching: boolean,
+  history: any
 }
 
 const RecipesList = (props: Props)=> {
 
-    return (
+  let navigateToRecipeDetails = (label: string)=> {
+    let encodedUri = encodeURIComponent(label);
+    props.history.push(`/recipes/${encodedUri}`);
+  };
+
+  return (
       <div style={styles.root as any}>
 
         {!props.isSearching &&
           props.recipes.map(tile => (
-          <Card key={tile.image} style={styles.tile as any}>
-            <CardMedia overlay={<CardTitle title={tile.label} subtitle={tile.source} />}>
-              <img src={tile.image} />
-            </CardMedia>
-            <CardText style={{float: 'right'}}>
-                <img src='images/calories.png' style={{width: '40px', height:'40px'}}/>{(tile.calories/tile.yield).toFixed()}
-                <FontIcon style={styles.materialIcons as any} width="40" className="material-icons" color='gray' >person</FontIcon> {tile.yield}
-            </CardText>
-          </Card>
+          <div onClick={()=>navigateToRecipeDetails(tile.label)}>
+            <Card key={tile.image} style={styles.tile as any}  >
+              <CardMedia overlay={<CardTitle title={tile.label} subtitle={tile.source} />}>
+                <img src={tile.image} />
+              </CardMedia>
+              <CardText style={{float: 'right'}}>
+                  <img src='images/calories.png' style={{width: '40px', height:'40px'}}/>{(tile.calories/tile.yield).toFixed()}
+                  <FontIcon style={styles.materialIcons as any} width="40" className="material-icons" color='gray' >person</FontIcon> {tile.yield}
+              </CardText>
+            </Card>
+          </div>
         ))}
 
         {props.isSearching &&
-          <CircularProgress style={{height: '100%', display:'flex', alignItems:'center'}} size={300} thickness={25} />
+          <CircularProgress style={{height: '300', display:'flex', alignItems:'center'}} size={300} thickness={25} />
         }
 
       </div>

@@ -7,15 +7,18 @@ class mainState {
   searchKey: string;
   isSearching: boolean;
   searchResults: Recipe[];
+  selectedRecipe: Recipe;
 
   constructor(){
     this.searchKey = "";
     this.isSearching = false;
     this.searchResults = [];
+    this.selectedRecipe = new Recipe();
   }
 }
 
 const mainReducer = (state: mainState = new mainState(), action) => {
+
   switch (action.type) {
     case actionsEnum.CHANGE_SEARCH_KEY:
       return handleChangeSearchKey(state, action);
@@ -23,6 +26,8 @@ const mainReducer = (state: mainState = new mainState(), action) => {
         return handleSearchStarted(state);
       case actionsEnum.SEARCH_COMPLETED:
         return handleSearchCompleted(state, action);
+      case actionsEnum.CHANGE_SELECTED_RECIPE:
+        return handleChangeSelectedRecipe(state, action);
   }
   return state;
 }
@@ -46,6 +51,15 @@ const handleSearchCompleted = (state: mainState, action)=> {
     ...state,
     isSearching: false,
     searchResults: action.results
+  }
+}
+
+const handleChangeSelectedRecipe = (state: mainState, action)=> {
+  let decodedUri = decodeURIComponent(action.recipeId);
+  let recipe = state.searchResults.find(r=>r.label==decodedUri);
+  return {
+    ...state,
+    selectedRecipe: recipe
   }
 }
 

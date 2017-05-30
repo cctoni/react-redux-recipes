@@ -23,14 +23,16 @@ import FontIcon from 'material-ui/FontIcon';
 
 import HeaderBar from './HeaderBar';
 import RecipesList from './RecipesList';
+import RecipeDetails from './RecipeDetails';
+import Recipe from '../models/Recipe';
 
 const muiTheme = getMuiTheme({
   palette: {
     primary1Color: orange400,
     accent1Color: deepOrange400
   },
-  //fontFamily: "Lato, sans-serif"
-  fontFamily: 'monospace'
+  fontFamily: "Lato, sans-serif"
+  //fontFamily: 'monospace'
 });
 
 let forceNavDown = {'marginTop': '64px'};
@@ -39,10 +41,12 @@ interface Props {
   searchKey: string;
   isSearching: boolean;
   searchResults: any[];
+  selectedRecipe: Recipe;
   changeSearchKey: (string)=>void;
   searchStarted:()=>void;
   searchCompleted:(any)=>void;
   fetchRecipes:()=>void;
+  changeSelectedRecipe: (string)=>void;
 }
 
 export class App extends React.Component<Props,{}> {
@@ -81,23 +85,21 @@ export class App extends React.Component<Props,{}> {
                   <p className="text-center" style={{position:'absolute', bottom:'50px', left:'0px', right:'0px'}}>Powered by <span><a href="https://www.edamam.com"><img height="20px" src="https://www.edamam.com/images/logo-site-header.png" /></a></span></p>
                 </Drawer>
               </div>
-              <div className="col-md-12 col-lg-10">
-                <Route exact path="/recipes" render={()=>(
-                  <RecipesList recipes={this.props.searchResults} isSearching={this.props.isSearching} />
-                )  as any} />
-                <Route path="/recipes/:id" render={()=>(<h1>Details</h1>)} />
+              <div className="col-md-12 col-lg-10" style={{padding: "48px"} as any}>
+                <Switch>
+                  <Route exact path="/recipes" render={({history})=>(
+                    <RecipesList recipes={this.props.searchResults} isSearching={this.props.isSearching} history={history} />
+                  )  as any} />
+                  <Route path="/recipes/:id" render={({match})=>(
+                    <RecipeDetails
+                      recipe={this.props.selectedRecipe}
+                      changeSelectedRecipe={this.props.changeSelectedRecipe}
+                      match={match as any} />
+                  ) as any}/>
+
+                  </Switch>
               </div>
             </div>
-
-
-
-
-
-
-
-
-
-
 
         </div>
 
