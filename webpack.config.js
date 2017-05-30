@@ -17,7 +17,7 @@ module.exports = {
   output: {
     path: path.join(basePath, 'dist'),
     filename: 'bundle.js',
-    //publicPath: '/', //critical for HtmlWebpackPlugin, check: https://github.com/ReactTraining/react-router/issues/676#issuecomment-174073981
+    publicPath: '/', //critical for HtmlWebpackPlugin, check: https://github.com/ReactTraining/react-router/issues/676#issuecomment-174073981
   },
 
   devtool: 'source-map',
