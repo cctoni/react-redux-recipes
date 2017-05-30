@@ -55,7 +55,8 @@ const handleSearchCompleted = (state: mainState, action)=> {
 }
 
 const handleChangeSelectedRecipe = (state: mainState, action)=> {
-  let decodedUri = decodeURIComponent(action.recipeId);
+  let decodedUri1 = decodeURIComponent(action.recipeId);
+  let decodedUri = decodeURIComponent(decodedUri1);
   let recipe = state.searchResults.find(r=>r.label==decodedUri);
   return {
     ...state,

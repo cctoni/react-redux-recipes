@@ -12,6 +12,7 @@ import Avatar from 'material-ui/Avatar';
 import IconMenu from 'material-ui/IconMenu';
 import NavigationExpandMoreIcon from 'material-ui/svg-icons/navigation/expand-more';
 import Badge from 'material-ui/Badge';
+import {Route,withRouter,Link} from 'react-router-dom';
 
 import {
   orange400,
@@ -38,13 +39,14 @@ const styles = {
   materialIcon: {
     display: 'inline-flex',
     alignItems: 'center',
-    lineHeight:'1'
+    lineHeight:'1',
+
   },
   searchIconButton: {
     borderColor: 'lightGray',
     borderStyle: 'solid',
     borderWidth: '0px 1px 0px 0px',
-    marginLeft:'8px',
+    //marginLeft:'8px',
     width: "50px",
     //background: deepOrange400,
   }
@@ -55,6 +57,7 @@ interface Props {
   searchKey: string;
   changeSearchKey: (string)=>void;
   fetchRecipes: ()=>void;
+  history: any;
 }
 
 
@@ -71,10 +74,26 @@ const HeaderBar = (props: Props) => {
         <Toolbar style={{background: 'transparent', height:'64px'}}>
           <ToolbarGroup firstChild={true}>
             <div style={{display: 'flex', alignItems:'center'}}>
-              <strong style={styles.title as any}>React Recipes</strong>
+              <strong style={styles.title as any} onClick={()=>props.history.push('/recipes')}>React Recipes</strong>
               <div  style={{...styles.searchBox, display: 'flex', alignItems:'center'}} >
-                <IconButton onTouchTap={()=>props.fetchRecipes()} style={ {...styles.materialIcon,...styles.searchIconButton} as any}><FontIcon className="material-icons" color={orange400} style={{lineHeight:'auto'}} >search</FontIcon></IconButton>
-                <TextField id="searchKey" defaultValue={props.searchKey} onChange={e=>onChangeSearchKey(e)} hintText="Search" fullWidth={true} underlineStyle={{display: 'none'}} style={{height: 'auto', margin:'8px', width:'600px'}} hintStyle={{bottom:'auto', fontWeight:'bold'}} />
+                <IconButton onTouchTap={()=>props.fetchRecipes()} style={ {...styles.materialIcon,...styles.searchIconButton} as any} hoveredStyle={{background:'#F5F5F5'}}><FontIcon className="material-icons" color={orange400} style={{lineHeight:'auto'}} >search</FontIcon></IconButton>
+                <Route render={()=>
+                  <TextField
+                    id="searchKey"
+                    value={props.searchKey}
+                    onChange={e=>onChangeSearchKey(e)}
+                    hintText="Search"
+                    fullWidth={true}
+                    underlineStyle={{display: 'none'}}
+                    style={{height: 'auto', margin:'8px', width:'600px'}}
+                    hintStyle={{bottom:'auto', fontWeight:'bold'}}
+                    onKeyPress={(ev) => {
+                      if (ev.key === 'Enter') {
+                        props.fetchRecipes();
+                        ev.preventDefault();
+                      }
+                    }} />
+                }></Route>
 
              </div>
 
@@ -82,15 +101,15 @@ const HeaderBar = (props: Props) => {
 
           </ToolbarGroup>
           <ToolbarGroup>
-            <IconButton style={styles.materialIcon as any}><FontIcon className="material-icons" color="white" style={{lineHeight:'auto'}} >favorite</FontIcon></IconButton>
-            <IconButton style={styles.materialIcon as any}><FontIcon className="material-icons" color="white" style={{lineHeight:'auto'}} >notifications</FontIcon></IconButton>
+            <IconButton style={styles.materialIcon as any}><FontIcon className="material-icons" color="white" hoverColor="#F5F5F5" style={{lineHeight:'auto'}} >favorite</FontIcon></IconButton>
+            <IconButton style={styles.materialIcon as any}><FontIcon className="material-icons" color="white" hoverColor="#F5F5F5" style={{lineHeight:'auto'}} >notifications</FontIcon></IconButton>
             <ToolbarSeparator style={{backgroundColor:'white'}} /><FontIcon />
             <Avatar src="http://www.material-ui.com/images/kolage-128.jpg" /><FontIcon />
             <ToolbarTitle text="Hi, Obi-Wan" style={{color:'white'}} />
             <IconMenu
             iconButtonElement={
               <IconButton touch={true}>
-                <NavigationExpandMoreIcon color="white" />
+                <NavigationExpandMoreIcon color="white" hoverColor="#F5F5F5" />
               </IconButton>
             }
           >
@@ -110,4 +129,4 @@ const HeaderBar = (props: Props) => {
   )
 }
 
-export default muiThemeable()(HeaderBar)
+export default withRouter(muiThemeable()(HeaderBar))

@@ -65,9 +65,9 @@ const RecipesList = (props: Props)=> {
       <div style={styles.root as any}>
 
         {!props.isSearching &&
-          props.recipes.map(tile => (
-          <div onClick={()=>navigateToRecipeDetails(tile.label)}>
-            <Card key={tile.image} style={styles.tile as any}  >
+          props.recipes.map((tile,idx) => (
+          <div key={idx} onClick={()=>navigateToRecipeDetails(tile.label)}>
+            <Card  style={styles.tile as any}>
               <CardMedia overlay={<CardTitle title={tile.label} subtitle={tile.source} />}>
                 <img src={tile.image} />
               </CardMedia>
@@ -80,7 +80,7 @@ const RecipesList = (props: Props)=> {
         ))}
 
         {props.isSearching &&
-          <CircularProgress style={{height: '300', display:'flex', alignItems:'center'}} size={300} thickness={25} />
+          <CircularProgress style={{height: '100%', display:'flex', alignItems:'center'}} size={300} thickness={25} />
         }
 
       </div>

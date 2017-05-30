@@ -14,7 +14,7 @@ function fetchRecipes () {
     let state = getState();
 
     axios
-      .get(`https://api.edamam.com/search?q=${state.mainReducer.searchKey}&app_id=${apiLogin.appId}&app_key=${apiLogin.appKey}&from=0&to=12`)
+      .get(`https://api.edamam.com/search?q=${state.mainReducer.searchKey}&app_id=${apiLogin.appId}&app_key=${apiLogin.appKey}&from=0&to=52`)
       .then((response)=>dispatch(searchCompleted(response.data.hits.map(h=>h.recipe))));
 
   }

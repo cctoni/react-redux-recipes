@@ -19,6 +19,8 @@ interface Props {
 
 const styles = {
   tile: {
+    height: "100%",
+    overflowY: "auto",
     //'width': '600px',
     //'overflowY': 'auto',
     //'marginBottom': '20px',
@@ -45,15 +47,16 @@ class RecipeDetails extends React.Component<Props,{}> {
   render() {
 
     let {recipe} = this.props;
+    if (!recipe) return <div />;
 
     return (
-      <div>
+      <div style={styles.tile as any}>
 
       <RaisedButton
         label="Back"
         containerElement={<Link to="/recipes"></Link>}/> <br /> <br />
 
-      <Paper style={styles.tile as any}>
+      <Paper>
 
         <div>
 
