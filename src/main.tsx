@@ -7,7 +7,7 @@ import {AppContainer} from './components/AppContainer';
 import reduxThunk from 'redux-thunk';
 
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Switch,
   Link,
