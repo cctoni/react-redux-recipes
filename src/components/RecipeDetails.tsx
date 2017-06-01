@@ -90,7 +90,7 @@ class RecipeDetails extends React.Component<Props,{}> {
                 <h5>Nutrients (per serving)</h5>
                 <NutrientDetails totalNutrients={recipe.totalNutrients} servings={recipe.yield} />
 
-                <p><a href={recipe.url}>Preperation Instructions</a></p>
+                <p><a href={recipe.url}>Preparation Instructions</a></p>
             </div>
 
           </div>
