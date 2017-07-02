@@ -1,7 +1,7 @@
 import actionsEnum from './actionsEnum';
 
-export default function searchStarted() {
-  return {
-    type: actionsEnum.SEARCH_STARTED
-  }
-}
+const searchStarted = () => ({
+  type: actionsEnum.SEARCH_STARTED,
+});
+
+export default searchStarted;

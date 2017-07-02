@@ -1,8 +1,8 @@
 import actionsEnum from './actionsEnum';
 
-export default function changeSearchKey(searchKey: string) {
-  return {
-    type: actionsEnum.CHANGE_SEARCH_KEY,
-    searchKey
-  }
-}
+const changeSearchKey = (searchKey: string) => ({
+  type: actionsEnum.CHANGE_SEARCH_KEY,
+  searchKey,
+});
+
+export default changeSearchKey;

@@ -1,8 +1,8 @@
 import actionsEnum from './actionsEnum';
 
-export default function searchCompleted(results) {
-  return {
-    type: actionsEnum.SEARCH_COMPLETED,
-    results
-  }
-}
+const searchCompleted = results => ({
+  type: actionsEnum.SEARCH_COMPLETED,
+  results,
+});
+
+export default searchCompleted;
